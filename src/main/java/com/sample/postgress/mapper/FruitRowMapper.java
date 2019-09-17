@@ -19,5 +19,4 @@ public class FruitRowMapper implements RowMapper<Fruit> {
         return theFruit;
 	}
 
-
 }

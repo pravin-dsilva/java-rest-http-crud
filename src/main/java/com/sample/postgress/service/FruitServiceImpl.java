@@ -28,12 +28,6 @@ public class FruitServiceImpl implements FruitService {
 	public Fruit updateFruit(String id, Fruit theFruit) throws IllegalArgumentException{
 		return fruitDao.updateFruit(id, theFruit);
 	}
-	/*
-	 * @Override public void executeUpdateFruit(Fruit theFruit) {
-	 * fruitDao.executeUpdateFruit(theFruit);
-	 * 
-	 * }
-	 */
 
 	@Override
 	public void deleteFruit(String id) {
