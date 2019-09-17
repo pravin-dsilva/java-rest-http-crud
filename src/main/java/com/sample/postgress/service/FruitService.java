@@ -7,12 +7,14 @@ import com.sample.postgress.entity.Fruit;
 public interface FruitService {
 	List<Fruit> findAll();
 
-	void insertFruit(Fruit theFruit);
+	Fruit findById(String id);
 
-	void updateFruit(Fruit theFruit);
+	Fruit insertFruit(Fruit theFruit);
 
-	void executeUpdateFruit(Fruit theFruit);
+	Fruit updateFruit(String id, Fruit theFruit) throws IllegalArgumentException;
 
-	void deleteFruit(Fruit theFruit);
-	
+	// void executeUpdateFruit(Fruit theFruit);
+
+	void deleteFruit(String id);
+
 }

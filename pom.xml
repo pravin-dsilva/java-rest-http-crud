@@ -15,7 +15,8 @@
 	<description>Demo project for Spring Boot</description>
 	
 	<properties>
-	    <maven.compiler.release>9</maven.compiler.release>
+		<maven.compiler.release>9</maven.compiler.release>
+		<skipTests>true</skipTests>
 	</properties>
 
 	<dependencies>

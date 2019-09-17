@@ -2,22 +2,32 @@ package com.sample.postgress.entity;
 
 public class Fruit {
 
-	String fruitName;
-	String fruitQuantity;
-	
-	public String getFruitName() {
-		return fruitName;
+	String id;
+	String name;
+	String quantity;
+
+	public String getName() {
+		return name;
 	}
-	public void setFruitName(String fruitName) {
-		this.fruitName = fruitName;
+
+	public void setName(String name) {
+		this.name = name;
 	}
-	
-	public String getFruitQuantity() {
-		return fruitQuantity;
+
+	public String getQuantity() {
+		return quantity;
 	}
-	public void setFruitQuantity(String fruitQuantity) {
-		this.fruitQuantity = fruitQuantity;
+
+	public void setQuantity(String quantity) {
+		this.quantity = quantity;
 	}
-	
-	
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
 }
