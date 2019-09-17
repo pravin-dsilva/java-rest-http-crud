@@ -8,11 +8,15 @@ public interface FruitDao {
 
 	List<Fruit> findAll();
 
-	void insertFruit(Fruit theFruit);
+	Fruit findFruitById(String id);
 
-	void updateFruit(Fruit theFruit);
+	Fruit insertFruit(Fruit theFruit);
 
-	void executeUpdateFruit(Fruit theFruit);
+	Fruit updateFruit(String id, Fruit theFruit) throws IllegalArgumentException;
 
-	public void deleteFruit(Fruit theFruit);
+	// void executeUpdateFruit(Fruit theFruit);
+
+	void deleteFruit(String id);
+
+	void deleteFruit(Fruit theFruit);
 }

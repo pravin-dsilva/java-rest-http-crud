@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.PreparedStatementCallback;
@@ -17,78 +18,84 @@ import org.springframework.stereotype.Repository;
 
 import com.sample.postgress.entity.Fruit;
 import com.sample.postgress.mapper.FruitRowMapper;
+
 @Repository
-public class FruitDaoImpl implements FruitDao{
-	
-	public FruitDaoImpl(NamedParameterJdbcTemplate template) {  
-        this.template = template;  
-}  
-	NamedParameterJdbcTemplate template;  
+public class FruitDaoImpl implements FruitDao {
+
+	public FruitDaoImpl(NamedParameterJdbcTemplate template) {
+		this.template = template;
+	}
+
+	NamedParameterJdbcTemplate template;
 
 	@Override
 	public List<Fruit> findAll() {
 		return template.query("select * from fruit", new FruitRowMapper());
 	}
-	@Override
-	public void insertFruit(Fruit theFruit) {
-		 final String sql = "insert into fruit(fruitName, fruitQuantity) values(:fruitName,:fruitQuantity)";
-		 
-	        KeyHolder holder = new GeneratedKeyHolder();
-	        SqlParameterSource param = new MapSqlParameterSource()
-					.addValue("fruitName", theFruit.getFruitName())
-					.addValue("fruitQuantity", theFruit.getFruitQuantity());
-	        template.update(sql,param, holder);
-	 
-	}
-	
-	@Override
-	public void updateFruit(Fruit theFruit) {
-		 final String sql = "update fruit set fruitName=:fruitName, fruitQuantity=:fruitQuantity where fruitName=:fruitName";
-		 
-	        KeyHolder holder = new GeneratedKeyHolder();
-	        SqlParameterSource param = new MapSqlParameterSource()
-					.addValue("fruitName", theFruit.getFruitName())
-					.addValue("fruitQuantity", theFruit.getFruitQuantity());
-	        template.update(sql,param, holder);
-	 
-	}
-	
-	@Override
-	public void executeUpdateFruit(Fruit theFruit) {
- 		 final String sql = "update fruit set fruitName=:fruitName, fruitQuantity=:fruitQuantity where fruitName=:fruitName";
-	
-		 Map<String,Object> map=new HashMap<String,Object>();  
-		 map.put("fruitName", theFruit.getFruitName());
-		 map.put("fruitQuantity", theFruit.getFruitQuantity());
-	
-		 template.execute(sql,map,new PreparedStatementCallback<Object>() {  
-			    @Override  
-			    public Object doInPreparedStatement(PreparedStatement ps)  
-			            throws SQLException, DataAccessException {  
-			        return ps.executeUpdate();  
-			    }  
-			});  
 
-	 
+	@Override
+	public Fruit findFruitById(String id) {
+		final String sql = "select * from fruit where id=:id";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
+		List<Fruit> results = template.query(sql, param, new FruitRowMapper());
+		if (results.size() > 0) {
+			return results.get(0);
+		}
+		return null;
 	}
-	
+
+	@Override
+	public Fruit insertFruit(Fruit theFruit) {
+		final String sql = "insert into fruit(id, name, quantity) values(:id,:name,:quantity)";
+		UUID id = UUID.randomUUID();
+		KeyHolder holder = new GeneratedKeyHolder();
+		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id.toString())
+				.addValue("name", theFruit.getName()).addValue("quantity", theFruit.getQuantity());
+		template.update(sql, param, holder);
+
+		Fruit newFruit = findFruitById(id.toString());
+		return newFruit;
+	}
+
+	@Override
+	public Fruit updateFruit(String id, Fruit theFruit) throws IllegalArgumentException{
+		Fruit currentFruit = findFruitById(id);
+
+		if(currentFruit == null){
+			throw new RuntimeException(String.format("Fruit with ID=%s not found.", id));
+		}
+
+		final String sql = "update fruit set name=:name, quantity=:quantity where id=:id";
+
+		KeyHolder holder = new GeneratedKeyHolder();
+		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id)
+				.addValue("name", theFruit.getName()).addValue("quantity", theFruit.getQuantity());
+		template.update(sql, param, holder);
+
+		Fruit updatedFruit = findFruitById(id);
+		return updatedFruit;
+
+	}
+
 	@Override
 	public void deleteFruit(Fruit theFruit) {
-		 final String sql = "delete from fruit where fruitName=:fruitName";
-			 
-
-		 Map<String,Object> map=new HashMap<String,Object>();  
-		 map.put("fruitName", theFruit.getFruitName());
-	
-		 template.execute(sql,map,new PreparedStatementCallback<Object>() {  
-			    @Override  
-			    public Object doInPreparedStatement(PreparedStatement ps)  
-			            throws SQLException, DataAccessException {  
-			        return ps.executeUpdate();  
-			    }  
-			});  
-
-	 
+		deleteFruit(theFruit.getId());
 	}
-	
+
+	@Override
+	public void deleteFruit(String id) {
+		final String sql = "delete from fruit where id=:id";
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+
+		template.execute(sql, map, new PreparedStatementCallback<Object>() {
+			@Override
+			public Object doInPreparedStatement(PreparedStatement ps) throws SQLException, DataAccessException {
+				return ps.executeUpdate();
+			}
+		});
+
+	}
+
 }
