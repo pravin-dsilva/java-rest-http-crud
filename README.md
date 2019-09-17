@@ -1,12 +1,12 @@
-Example Java SpringBoot CRUD Application 
+# Example Java SpringBoot CRUD Application 
 
-### Getting Started
+## Getting Started
 
 To build the application as a Java JAR file, execute this command:
 
 `mvn package`
 
-#### Running Locally
+## Running Locally
 
 A Postgres DB is needed, so if you are using Docker, then you can start a postgres db easily.
 
