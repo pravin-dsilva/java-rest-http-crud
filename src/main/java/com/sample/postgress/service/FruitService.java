@@ -13,8 +13,6 @@ public interface FruitService {
 
 	Fruit updateFruit(String id, Fruit theFruit) throws IllegalArgumentException;
 
-	// void executeUpdateFruit(Fruit theFruit);
-
 	void deleteFruit(String id);
 
 }

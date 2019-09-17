@@ -14,8 +14,6 @@ public interface FruitDao {
 
 	Fruit updateFruit(String id, Fruit theFruit) throws IllegalArgumentException;
 
-	// void executeUpdateFruit(Fruit theFruit);
-
 	void deleteFruit(String id);
 
 	void deleteFruit(Fruit theFruit);

@@ -44,12 +44,6 @@ public class ApplicationController {
 		return fruitService.updateFruit(id, theFruit);
 	}
 
-	/*
-	 * @PutMapping(value = "/executeUpdateFruit") public void
-	 * executeUpdateFruit(@RequestBody Fruit theFruit) {
-	 * fruitService.executeUpdateFruit(theFruit); }
-	 */
-
 	@DeleteMapping(value = "/fruits/{id}")
 	public void deleteFruit(@PathVariable String id) {
 		fruitService.deleteFruit(id);
