@@ -12,41 +12,41 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sample.postgress.entity.Employee;
-import com.sample.postgress.service.EmployeeService;
+import com.sample.postgress.entity.Fruit;
+import com.sample.postgress.service.FruitService;
 
 @RestController
 @RequestMapping("/postgressApp")
 public class ApplicationController {
 
 	@Resource 
-	EmployeeService employeeService;
+	FruitService fruitService;
 	
-	@GetMapping(value = "/employeeList")
-	public List<Employee> getEmployees() {
-		return employeeService.findAll();
-	
-	}
-	
-	@PostMapping(value = "/createEmp")
-	public void createEmployee(@RequestBody Employee emp) {
-		 employeeService.insertEmployee(emp);
-	
-	}
-	@PutMapping(value = "/updateEmp")
-	public void updateEmployee(@RequestBody Employee emp) {
-		 employeeService.updateEmployee(emp);
-	
-	}
-	@PutMapping(value = "/executeUpdateEmp")
-	public void executeUpdateEmployee(@RequestBody Employee emp) {
-		 employeeService.executeUpdateEmployee(emp);
+	@GetMapping(value = "/fruitList")
+	public List<Fruit> getFruits() {
+		return fruitService.findAll();
 	
 	}
 	
-	@DeleteMapping(value = "/deleteEmpById")
-	public void deleteEmployee(@RequestBody Employee emp) {
-		 employeeService.deleteEmployee(emp);
+	@PostMapping(value = "/createFruit")
+	public void createFruit(@RequestBody Fruit theFruit) {
+		 fruitService.insertFruit(theFruit);
+	
+	}
+	@PutMapping(value = "/updateFruit")
+	public void updateFruit(@RequestBody Fruit theFruit) {
+		 fruitService.updateFruit(theFruit);
+	
+	}
+	@PutMapping(value = "/executeUpdateFruit")
+	public void executeUpdateFruit(@RequestBody Fruit theFruit) {
+		 fruitService.executeUpdateFruit(theFruit);
+	
+	}
+	
+	@DeleteMapping(value = "/deleteFruitByName")
+	public void deleteFruit(@RequestBody Fruit theFruit) {
+		 fruitService.deleteFruit(theFruit);
 	
 	}
 	

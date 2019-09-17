@@ -15,58 +15,51 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
-import com.sample.postgress.entity.Employee;
-import com.sample.postgress.mapper.EmployeeRowMapper;
+import com.sample.postgress.entity.Fruit;
+import com.sample.postgress.mapper.FruitRowMapper;
 @Repository
-public class EmployeeDaoImpl implements EmployeeDao{
+public class FruitDaoImpl implements FruitDao{
 	
-	public EmployeeDaoImpl(NamedParameterJdbcTemplate template) {  
+	public FruitDaoImpl(NamedParameterJdbcTemplate template) {  
         this.template = template;  
 }  
 	NamedParameterJdbcTemplate template;  
 
 	@Override
-	public List<Employee> findAll() {
-		return template.query("select * from employee", new EmployeeRowMapper());
+	public List<Fruit> findAll() {
+		return template.query("select * from fruit", new FruitRowMapper());
 	}
 	@Override
-	public void insertEmployee(Employee emp) {
-		 final String sql = "insert into employee(employeeId, employeeName , employeeAddress,employeeEmail) values(:employeeId,:employeeName,:employeeEmail,:employeeAddress)";
+	public void insertFruit(Fruit theFruit) {
+		 final String sql = "insert into fruit(fruitName, fruitQuantity) values(:fruitName,:fruitQuantity)";
 		 
 	        KeyHolder holder = new GeneratedKeyHolder();
 	        SqlParameterSource param = new MapSqlParameterSource()
-					.addValue("employeeId", emp.getEmployeeId())
-					.addValue("employeeName", emp.getEmployeeName())
-					.addValue("employeeEmail", emp.getEmployeeEmail())
-					.addValue("employeeAddress", emp.getEmployeeAddress());
+					.addValue("fruitName", theFruit.getFruitName())
+					.addValue("fruitQuantity", theFruit.getFruitQuantity());
 	        template.update(sql,param, holder);
 	 
 	}
 	
 	@Override
-	public void updateEmployee(Employee emp) {
-		 final String sql = "update employee set employeeName=:employeeName, employeeAddress=:employeeAddress, employeeEmail=:employeeEmail where employeeId=:employeeId";
+	public void updateFruit(Fruit theFruit) {
+		 final String sql = "update fruit set fruitName=:fruitName, fruitQuantity=:fruitQuantity where fruitName=:fruitName";
 		 
 	        KeyHolder holder = new GeneratedKeyHolder();
 	        SqlParameterSource param = new MapSqlParameterSource()
-					.addValue("employeeId", emp.getEmployeeId())
-					.addValue("employeeName", emp.getEmployeeName())
-					.addValue("employeeEmail", emp.getEmployeeEmail())
-					.addValue("employeeAddress", emp.getEmployeeAddress());
+					.addValue("fruitName", theFruit.getFruitName())
+					.addValue("fruitQuantity", theFruit.getFruitQuantity());
 	        template.update(sql,param, holder);
 	 
 	}
 	
 	@Override
-	public void executeUpdateEmployee(Employee emp) {
-		 final String sql = "update employee set employeeName=:employeeName, employeeAddress=:employeeAddress, employeeEmail=:employeeEmail where employeeId=:employeeId";
-			 
-
+	public void executeUpdateFruit(Fruit theFruit) {
+ 		 final String sql = "update fruit set fruitName=:fruitName, fruitQuantity=:fruitQuantity where fruitName=:fruitName";
+	
 		 Map<String,Object> map=new HashMap<String,Object>();  
-		 map.put("employeeId", emp.getEmployeeId());
-		 map.put("employeeName", emp.getEmployeeName());
-		 map.put("employeeEmail", emp.getEmployeeEmail());
-		 map.put("employeeAddress", emp.getEmployeeAddress());
+		 map.put("fruitName", theFruit.getFruitName());
+		 map.put("fruitQuantity", theFruit.getFruitQuantity());
 	
 		 template.execute(sql,map,new PreparedStatementCallback<Object>() {  
 			    @Override  
@@ -80,12 +73,12 @@ public class EmployeeDaoImpl implements EmployeeDao{
 	}
 	
 	@Override
-	public void deleteEmployee(Employee emp) {
-		 final String sql = "delete from employee where employeeId=:employeeId";
+	public void deleteFruit(Fruit theFruit) {
+		 final String sql = "delete from fruit where fruitName=:fruitName";
 			 
 
 		 Map<String,Object> map=new HashMap<String,Object>();  
-		 map.put("employeeId", emp.getEmployeeId());
+		 map.put("fruitName", theFruit.getFruitName());
 	
 		 template.execute(sql,map,new PreparedStatementCallback<Object>() {  
 			    @Override  
