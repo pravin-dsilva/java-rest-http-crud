@@ -30,8 +30,8 @@ In this example, the db user is `luke`, the password is `secret` and the databas
 
 You can then start the application like this:
 
-``` shell
-JDBC_URL="jdbc:postgresql://localhost:5432/my_data" DB_USERNAME=luke DB_PASSWORD=secret java -jar target/java-rest-http-crud-0.0.1-SNAPSHOT.jar
+```shell
+JDBC_URL="jdbc:postgresql://localhost:5432/my_data" DB_USER=luke DB_PASSWORD=secret java -jar target/java-rest-http-crud-0.0.1-SNAPSHOT.jar
 ```
 
 Then go to [http://localhost:8080](http://localhost:8080)
