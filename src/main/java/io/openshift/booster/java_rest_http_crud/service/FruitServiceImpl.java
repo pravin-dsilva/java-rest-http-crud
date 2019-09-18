@@ -1,4 +1,4 @@
-package com.sample.postgress.service;
+package io.openshift.booster.java_rest_http_crud.service;
 
 import java.util.List;
 
@@ -6,8 +6,8 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Component;
 
-import com.sample.postgress.dao.FruitDao;
-import com.sample.postgress.entity.Fruit;
+import io.openshift.booster.java_rest_http_crud.dao.FruitDao;
+import io.openshift.booster.java_rest_http_crud.entity.Fruit;
 
 @Component
 public class FruitServiceImpl implements FruitService {

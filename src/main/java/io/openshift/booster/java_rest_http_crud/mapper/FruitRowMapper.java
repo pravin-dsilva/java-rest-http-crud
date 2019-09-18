@@ -1,11 +1,11 @@
-package com.sample.postgress.mapper;
+package io.openshift.booster.java_rest_http_crud.mapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
 
-import com.sample.postgress.entity.Fruit;
+import io.openshift.booster.java_rest_http_crud.entity.Fruit;
 
 public class FruitRowMapper implements RowMapper<Fruit> {
 

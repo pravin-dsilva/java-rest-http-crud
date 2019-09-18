@@ -1,14 +1,13 @@
-package com.sample.postgress.dao;
+package io.openshift.booster.java_rest_http_crud.service;
 
 import java.util.List;
 
-import com.sample.postgress.entity.Fruit;
+import io.openshift.booster.java_rest_http_crud.entity.Fruit;
 
-public interface FruitDao {
-
+public interface FruitService {
 	List<Fruit> findAll();
 
-	Fruit findFruitById(String id);
+	Fruit findById(String id);
 
 	Fruit insertFruit(Fruit theFruit);
 
@@ -16,5 +15,4 @@ public interface FruitDao {
 
 	void deleteFruit(String id);
 
-	void deleteFruit(Fruit theFruit);
 }

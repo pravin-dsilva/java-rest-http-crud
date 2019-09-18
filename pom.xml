@@ -8,10 +8,10 @@
 		<version>2.1.1.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.sample</groupId>
-	<artifactId>postgress</artifactId>
+	<groupId>io.openshift.booster</groupId>
+	<artifactId>java-rest-http-crud</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>postgress</name>
+	<name>java-rest-http-crud</name>
 	<description>Demo project for Spring Boot</description>
 	
 	<properties>

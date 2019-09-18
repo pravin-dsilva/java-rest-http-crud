@@ -1,4 +1,4 @@
-package com.sample.postgress.dao;
+package io.openshift.booster.java_rest_http_crud.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -16,8 +16,8 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
-import com.sample.postgress.entity.Fruit;
-import com.sample.postgress.mapper.FruitRowMapper;
+import io.openshift.booster.java_rest_http_crud.entity.Fruit;
+import io.openshift.booster.java_rest_http_crud.mapper.FruitRowMapper;
 
 @Repository
 public class FruitDaoImpl implements FruitDao {
