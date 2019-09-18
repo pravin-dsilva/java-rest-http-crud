@@ -1,4 +1,4 @@
-package com.sample.postgress.entity;
+package io.openshift.booster.java_rest_http_crud.entity;
 
 public class Fruit {
 

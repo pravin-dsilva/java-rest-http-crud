@@ -1,4 +1,4 @@
-package com.sample.postgress.controller;
+package io.openshift.booster.java_rest_http_crud.controller;
 
 import java.util.List;
 
@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sample.postgress.entity.Fruit;
-import com.sample.postgress.service.FruitService;
+import io.openshift.booster.java_rest_http_crud.entity.Fruit;
+import io.openshift.booster.java_rest_http_crud.service.FruitService;
 
 @RestController
 @RequestMapping("/api")

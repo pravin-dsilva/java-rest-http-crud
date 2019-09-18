@@ -1,4 +1,4 @@
-package com.sample.postgress;
+package io.openshift.booster.java_rest_http_crud;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
