@@ -12,14 +12,17 @@ public class BoosterApplication {
 	public static void main(String[] args) throws Exception {
 		URL url;
 		String JDBC_URL;
+		String DB_IP;
+		String DB_PORT;
+		String DB_NAME;
 		try {
-			String DB_IP = System.getenv("DATABASE_IP");
-			String DB_PORT = System.getenv("DATABASE_PORT");
-			String DB_NAME = System.getenv("DATABASE_DBNAME");
+			DB_IP = System.getenv("DATABASE_IP");
+			DB_PORT = System.getenv("DATABASE_PORT");
+			DB_NAME = System.getenv("DATABASE_DBNAME");
 			Class.forName("org.postgresql.Driver");
-			JDBC_URL="jdbc:postgresql://"+DB_IP+":"+DB_PORT+"/"+ DB_NAME;
-			DriverManager.getConnection(JDBC_URL, System.getenv("DATABASE_USER"),
-					System.getenv("DATABASE_PASSWORD"));
+			JDBC_URL="jdbc:postgresql://"+DB_IP+":"+DB_PORT+"/"+DB_NAME;
+			DriverManager.getConnection(JDBC_URL, System.getenv("DB_USER"),
+					System.getenv("DB_PASSWORD"));
 			// System.out.println("DB is available!!");
 			url = BoosterApplication.class.getResource("/BOOT-INF/classes/db.properties");
 		} catch (Exception e) {
