@@ -11,10 +11,11 @@ public class BoosterApplication {
 
 	public static void main(String[] args) throws Exception {
 		URL url;
+		String JDBC_URL;
 		try {
 			Class.forName("org.postgresql.Driver");
-			DriverManager.getConnection(System.getenv("JDBC_URL"), System.getenv("DB_USER"),
-					System.getenv("DB_PASSWORD"));
+			JDBC_URL="jdbc:postgresql://"+System.getenv('DATABASE_IP')+":"+System.getenv('DATABASE_PORT')+"/"+System.getenv('DATABASE_DBNAME');
+			DriverManager.getConnection(JDBC_URL, System.getenv("DB_USER"),
 			// System.out.println("DB is available!!");
 			url = BoosterApplication.class.getResource("/BOOT-INF/classes/db.properties");
 		} catch (Exception e) {
