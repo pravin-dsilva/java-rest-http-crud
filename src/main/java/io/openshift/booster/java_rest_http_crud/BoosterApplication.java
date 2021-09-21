@@ -15,7 +15,8 @@ public class BoosterApplication {
 		try {
 			Class.forName("org.postgresql.Driver");
 			JDBC_URL="jdbc:postgresql://"+System.getenv('DATABASE_IP')+":"+System.getenv('DATABASE_PORT')+"/"+System.getenv('DATABASE_DBNAME');
-			DriverManager.getConnection(JDBC_URL, System.getenv("DB_USER"),
+			DriverManager.getConnection(JDBC_URL, System.getenv("DATABASE_USER"),
+					System.getenv("DATABASE_PASSWORD"));
 			// System.out.println("DB is available!!");
 			url = BoosterApplication.class.getResource("/BOOT-INF/classes/db.properties");
 		} catch (Exception e) {
